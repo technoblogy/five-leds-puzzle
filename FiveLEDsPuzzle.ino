@@ -1,4 +1,4 @@
-/* Five LEDs Puzzle v2 - see http://www.technoblogy.com/show?3D8S
+/* Five LEDs Puzzle v2 - see http://www.technoblogy.com/show?3EL5
 
    David Johnson-Davies - www.technoblogy.com - 4th January 2021
    ATtiny85 @ 1 MHz (internal oscillator; BOD disabled)

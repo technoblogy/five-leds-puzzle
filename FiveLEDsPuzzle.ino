@@ -1,6 +1,6 @@
-/* Five LEDs Puzzle v2 - see http://www.technoblogy.com/show?3EL5
+/* Five LEDs Puzzle v3 - see http://www.technoblogy.com/show?3D8S
 
-   David Johnson-Davies - www.technoblogy.com - 4th January 2021
+   David Johnson-Davies - www.technoblogy.com - 5th January 2021
    ATtiny85 @ 1 MHz (internal oscillator; BOD disabled)
    
    CC BY 4.0
@@ -24,7 +24,7 @@ void setup () {
   set_sleep_mode(SLEEP_MODE_PWR_DOWN);
 }
 
-const unsigned long Timeout = 30000; // 30 seconds
+const unsigned long Timeout = 3000; // 30 seconds
 
 void loop () {
   unsigned long Start = millis();
@@ -52,7 +52,7 @@ void loop () {
   sleep_enable();
   sleep_cpu();                        // Go to sleep
   GIMSK = GIMSK | 1<<PCIE;            // Disable pin change interrupt
-  while (PINB & 0x1F != 0x1F);        // Wait for all buttons released
+  while ((PINB & 0x1F) != 0x1F);      // Wait for all buttons released
   TIMSK = timsk;                      // Re-enable timer interrupts
   PORTB = 0;                          // Pullups off
   DDRB = d;                           // Restore lights

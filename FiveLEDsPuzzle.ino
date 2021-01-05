@@ -24,7 +24,7 @@ void setup () {
   set_sleep_mode(SLEEP_MODE_PWR_DOWN);
 }
 
-const unsigned long Timeout = 3000; // 30 seconds
+const unsigned long Timeout = 30000; // 30 seconds
 
 void loop () {
   unsigned long Start = millis();

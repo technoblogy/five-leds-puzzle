@@ -32,12 +32,18 @@ void loop () {
     for (int b=0; b<5; b++) {
       int d = DDRB;
       DDRB = d & ~(1<<b);
+      PORTB |= 1 << b;
       delay(1);
       if (!(PINB & 1<<b)) {
         while (!(PINB & 1<<b));
+        PORTB &= ~(1 << b);
         DDRB = d ^ ((!b || (d & ((1<<b)-1)) == 1<<(b-1))<<b);
         Start = millis();
-      } else DDRB = d;
+      }
+      else {
+        PORTB &= ~(1 << b);
+        DDRB = d;
+      }
       delay(10);
     }
   }

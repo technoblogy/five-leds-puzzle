@@ -1,6 +1,6 @@
-/* Five LEDs Puzzle v3 - see http://www.technoblogy.com/show?3D8S
+/* Five LEDs Puzzle v4 - see http://www.technoblogy.com/show?3D8S
 
-   David Johnson-Davies - www.technoblogy.com - 5th January 2021
+   David Johnson-Davies - www.technoblogy.com - 9th January 2021
    ATtiny85 @ 1 MHz (internal oscillator; BOD disabled)
    
    CC BY 4.0
@@ -32,16 +32,15 @@ void loop () {
     for (int b=0; b<5; b++) {
       int d = DDRB;
       DDRB = d & ~(1<<b);
-      PORTB |= 1 << b;
+      PORTB |= 1<<b;
       delay(1);
       if (!(PINB & 1<<b)) {
         while (!(PINB & 1<<b));
-        PORTB &= ~(1 << b);
+        PORTB &= ~(1<<b);
         DDRB = d ^ ((!b || (d & ((1<<b)-1)) == 1<<(b-1))<<b);
         Start = millis();
-      }
-      else {
-        PORTB &= ~(1 << b);
+      } else {
+        PORTB &= ~(1<<b);
         DDRB = d;
       }
       delay(10);

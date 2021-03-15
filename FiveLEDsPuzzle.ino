@@ -1,6 +1,6 @@
-/* Five LEDs Puzzle v4 - see http://www.technoblogy.com/show?3D8S
+/* Five LEDs Puzzle v5 - see http://www.technoblogy.com/show?3D8S
 
-   David Johnson-Davies - www.technoblogy.com - 9th January 2021
+   David Johnson-Davies - www.technoblogy.com - 15th March 2021
    ATtiny85 @ 1 MHz (internal oscillator; BOD disabled)
    
    CC BY 4.0
@@ -60,6 +60,6 @@ void loop () {
   while ((PINB & 0x1F) != 0x1F);      // Wait for all buttons released
   TIMSK = timsk;                      // Re-enable timer interrupts
   PORTB = 0;                          // Pullups off
-  DDRB = d;                           // Restore lights
+  DDRB = (d == 0b11111) ? 0 : d;      // Restore lights or reset
   delay(500);           
 }
